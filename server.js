@@ -14,14 +14,22 @@ server.listen(app.get('port') ,app.get('ip'), function () {
                 app.get('port'));
 });
 
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ * Using Math.round() will give you a non-uniform distribution!
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 function getDrones(callback) {
     var msg = [
-        { id: 1, battery: '80%', coords: [28.170489, 83.045654], },
-        { id: 2, battery: '20%', coords: [27.782392, 84.413452], },
-        { id: 3, battery: '40%', coords: [28.339036, 82.174988], },
-        { id: 4, battery: '85%', coords: [27.563475, 84.968262], },
-        { id: 5, battery: '11%', coords: [28.383346, 84.693604], },
-        { id: 6, battery: '56%', coords: [27.835838, 83.732300] }
+        { id: 1, battery: getRandomInt(15, 100), coords: [28.170489, 83.045654], },
+        { id: 2, battery: getRandomInt(15, 100), coords: [27.782392, 84.413452], },
+        { id: 3, battery: getRandomInt(15, 100), coords: [28.339036, 82.174988], },
+        { id: 4, battery: getRandomInt(15, 100), coords: [27.563475, 84.968262], },
+        { id: 5, battery: getRandomInt(15, 100), coords: [28.383346, 84.693604], },
+        { id: 6, battery: getRandomInt(15, 100), coords: [27.835838, 83.732300] }
     ];
 
     return callback(msg);
